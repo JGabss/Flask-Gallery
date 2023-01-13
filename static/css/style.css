@@ -1,0 +1,11 @@
+.navHeader {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.logo {
+  margin: 2% auto 0 auto;
+  text-align: center;
+}
+

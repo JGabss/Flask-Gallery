@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<main class="content" style="background-color: white; text-align: justify; margin: 5% 2.5% 10% 2.5%; padding: 1.25% 2.5%; border-radius: 5px;
+box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
+-webkit-box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
+-moz-box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        {% for obra in obras %}
+        <div class="card text-center" style="width: 18rem;">
+            <img src="{{obra.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{obra.nome}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{obra.autor}}</h6>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{{ url_for('delete', id=obra.id) }}" class="btn btn-danger">Deletar</a>
+                <a href="{{ url_for('update', id=obra.id) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </div>
+
+        {% endfor%}
+    </div>
+
+
+</main>
+{% endblock %}

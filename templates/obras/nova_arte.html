@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="content" style="background-color: white; text-align: justify; margin: 5% 2.5% 10% 2.5%; padding: 1.25% 2.5%; border-radius: 5px;
+box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
+-webkit-box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
+-moz-box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);">
+
+<form method="POST">
+    <div class="mb-3">
+        <label>Nome da obra: </label>
+        <input class="form-control" type="text" name="nome" required>
+    </div>
+    <div class="mb-3">
+        <label>Autor: </label>
+        <input class="form-control" type="text" name="autor" required>
+    </div>
+    <div class="mb-3">
+        <label>Ano de criação:</label>
+        <input class="form-control" type="number" min="0" max="2023" name="ano" required>
+    </div>
+    <div class="mb-3">
+        <label> Descreva sua imagem: </label>
+
+        <input class="form-control" type="text" name="imagem" required>
+    </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Criar</button>
+</form>
+</main>
+{% endblock %}
