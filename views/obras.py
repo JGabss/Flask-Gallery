@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, session, url_for
 from app import app, db
 from models import Obras
 import openai
+from decouple import config as ENV
 
 @app.route("/", methods=["GET"])
 def index():
@@ -27,7 +28,7 @@ def new_art():
         ano = request.form["ano"]
         conteudo = request.form["imagem"]
 
-        openai.api_key = "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"
+        openai.api_key = ENV("API_KEY")
         image = openai.Image.create(
             prompt=conteudo,
             n=1,

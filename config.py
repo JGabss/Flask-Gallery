@@ -1,13 +1,13 @@
 import os
-
-SECRET_KEY = "aisjdiasjxiasj2"
+from decouple import config as ENV
+SECRET_KEY = ENV("SECRET_KEY")
 
 SQLALCHEMY_DATABASE_URI = "{SGBD}://{usuario}:{senha}@{servidor}/{database}".format(
     SGBD="postgresql",
-    usuario="postgres",
-    senha="JoseGabr1elLambda",
+    usuario=ENV("USUARIO"),
+    senha=ENV("SENHA"),
     servidor="localhost",
-    database="galery",
+    database=ENV("DATABASE"),
 )
 
 UPLOAD_PATH = os.path.dirname(os.path.abspath(__file__)) + '/uploads'
