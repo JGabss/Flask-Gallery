@@ -91,6 +91,13 @@ def update(id: int):
 
         return redirect(url_for("index"))
 
-    return render_template("obras/editar.html", titulo="Editar", obra=arte)
+    return render_template("obras/editar.html", titulo="Editar", obra=arte, user=user)
 
-    
+@app.route("/sobre_nos/", methods=["GET"])
+def about_us():
+    try:
+        user = session["usuario_logado"]
+    except:
+        user = None
+
+    return render_template("sobre_nos.html", titulo="Sobre Nós", user=user )
