@@ -1,20 +1,19 @@
 from flask import render_template, request, redirect, session, url_for, flash
 from app import app, db
 from models import User
-
+import cryptocode
+from decouple import config as ENV
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
         usuario = User.query.filter_by(username=request.form['usuario']).first()
+        senha = cryptocode.decrypt(usuario.senha, ENV("CRYPTO_KEY"))
         if usuario:
-            if request.form['senha'] == usuario.senha:
+            if request.form['senha'] == senha:
                 session['usuario_logado'] = usuario.username
                 flash(usuario.username + ' logado com sucesso!')
                 proxima_pagina = request.form['proxima']
                 return redirect(proxima_pagina)
-            else:
-                flash('Usuário não logado!')
-                return redirect(url_for('login'))
         else:
             flash('Usuário não logado!')
             return redirect(url_for('login'))

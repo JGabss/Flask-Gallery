@@ -1,5 +1,7 @@
 from app import db
-from sqlalchemy.orm import backref
+from cryptography.fernet import Fernet
+from decouple import config as ENV
+import cryptocode
 
 class Obras(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -36,8 +38,8 @@ class Obras(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(150), nullable=False)
-    username = db.Column(db.String(30), nullable=False)
-    senha = db.Column(db.String(30), nullable=False)
+    username = db.Column(db.String(255), nullable=False)
+    senha = db.Column(db.String(255), nullable=False)
 
     def __repr__(self):
         return "<Name %r>" % self.nome
@@ -49,7 +51,17 @@ class User(db.Model):
 
     @staticmethod
     def create(nome, username, senha):
-        new_user = User(nome, username, senha)
+        key = ENV("CRYPTO_KEY")
+
+
+        password_crypto = cryptocode.encrypt(senha, key)
+        new_user = User(nome, username, password_crypto)
 
         db.session.add(new_user)
         db.session.commit()
+
+    @staticmethod
+    def password(self):
+        key = ENV("CRYPTO_KEY")
+
+        return cryptocode.decrypt(self.senha, key)
