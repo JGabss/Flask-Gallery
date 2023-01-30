@@ -12,7 +12,7 @@ def index():
         user = None
 
     obras = Obras.query.order_by(Obras.id)
-    return render_template("obras/obras.html", obras=obras, user=user, titulo="Artes")
+    return render_template("obras/obras.html", obras=obras, user=user, titulo="Artes", exists=(True if len(obras.all()) > 0 else False))
 
 @app.route("/nova_obra", methods=["GET", "POST"])
 def new_art():

@@ -6,6 +6,7 @@
 box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
 -webkit-box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
 -moz-box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);">
+{% if exists %}
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
         {% for obra in obras %}
         <div class="card text-center" style="width: 18rem;">
@@ -21,7 +22,12 @@ box-shadow: 2px 4px 53px -13px rgba(255, 255, 255, 0.75);
 
         {% endfor%}
     </div>
-
+{% else %}
+<div class="error" style="text-align: center;">
+    <img src="https://th.bing.com/th/id/R.193b0f9f09892754f210bb875f4eb0b2?rik=M7xXN%2fzkwYFTPA&riu=http%3a%2f%2fwww.ub.edu%2fxdl%2factivitats%2fwww.ub.edu%2fxdl%2factivitats%2fwp-content%2fuploads%2f2013%2f05%2fdali.jpg&ehk=IkTRkHB%2fVR5Roxs2hFpAWoODwCUgMB882kwMDMQmR7E%3d&risl=&pid=ImgRaw&r=0" alt="" height="450px">
+    <p>Não há artes aqui</p>
+</div>
+{% endif %}
 
 </main>
 {% endblock %}
