@@ -55,7 +55,7 @@ def my_arts():
 
 
     obras = Obras.query.filter_by(propietario=user)
-    return render_template("obras/minhas_obras.html", titulo="Minhas Artes", obras=obras, user=user, )
+    return render_template("obras/minhas_obras.html", titulo="Minhas Artes", obras=obras, user=user, exists=(True if len(obras.all()) > 0 else False))
 
 @app.route("/deletar/<int:id>")
 def delete(id: int):
